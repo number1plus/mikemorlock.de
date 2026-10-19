@@ -1,12 +1,40 @@
+/* Monument Grotesk Variable — same face Cargo serves via type.cargo.site.
+   Not self-hosted: Dinamo↔Cargo fonts are licensed for Cargo sites only;
+   redistributing the woff2 in this repo needs a separate Dinamo Web license.
+   See internal note: cargo-font-match.md */
+@font-face {
+  font-display: swap;
+  font-family: "Monument Grotesk Variable";
+  src: url("https://type.cargo.site/files/CargoMonumentGroteskPlusVariable.woff2")
+    format("woff2-variations"),
+    url("https://type.cargo.site/files/CargoMonumentGroteskPlusVariable.woff2")
+    format("woff2");
+  font-style: normal;
+  font-weight: 200 1000;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Monument Grotesk Variable";
+  src: url("https://type.cargo.site/files/CargoMonumentGroteskItalicPlusVariable.woff2")
+    format("woff2-variations"),
+    url("https://type.cargo.site/files/CargoMonumentGroteskItalicPlusVariable.woff2")
+    format("woff2");
+  font-style: italic;
+  font-weight: 200 1000;
+}
+
 :root {
-  --black: #111;
-  --muted: #444;
-  --accent: #e10600;
+  --black: rgba(0, 0, 0, 0.85);
+  --muted: rgba(0, 0, 0, 0.55);
+  --accent: #ff0000;
   --bg: #fff;
   --max: 44rem;
   --wide: 68rem;
   --pad: 1.5rem;
-  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font: "Monument Grotesk Variable", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Cargo site rem base ≈ 10px; map key styles to that scale in px */
+  --cargo-base: 10px;
 }
 
 *,
@@ -27,10 +55,14 @@ body {
   color: var(--black);
   background: var(--bg);
   font-family: var(--font);
-  font-size: 16px;
-  line-height: 1.55;
-  font-weight: 400;
+  /* Cargo .mike / bodycopy feel (~18–20px at their ~10px rem base) */
+  font-size: clamp(17px, 1.85 * var(--cargo-base), 20px);
+  line-height: 1.15;
+  font-weight: 360;
+  font-variation-settings: "slnt" 0, "MONO" 0;
+  letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img {
@@ -41,7 +73,8 @@ img {
 
 a {
   color: inherit;
-  text-underline-offset: 0.15em;
+  text-decoration: none;
+  text-underline-offset: 0.12em;
 }
 
 a:hover {
@@ -64,8 +97,8 @@ a:hover {
 
 .logo {
   font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-weight: 500;
+  letter-spacing: 0;
   text-decoration: none;
 }
 
@@ -73,10 +106,10 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem 1.25rem;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .nav a {
@@ -99,39 +132,53 @@ a:hover {
   max-width: var(--max);
 }
 
+/* Cargo h1: Monument, weight 380, ~4.5rem @ 10px base ≈ 45px, lh 1, ls -0.015em */
 .intro h1 {
-  font-size: clamp(1.55rem, 3.4vw, 2.15rem);
-  line-height: 1.25;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.75rem, 4.2vw, 2.8rem);
+  line-height: 1;
+  font-weight: 380;
+  letter-spacing: -0.015em;
+  font-variation-settings: "slnt" 0, "MONO" 0;
+  font-feature-settings: "tnum";
   margin: 0.5rem 0 1rem;
-  max-width: 38rem;
+  max-width: 40rem;
+  color: var(--black);
 }
 
+/* Cargo .mike with --font-scale: 0.62 → ~18–19px, weight 330 */
 .lede {
   max-width: 36rem;
   margin: 0 0 1rem;
-  color: var(--muted);
+  color: var(--black);
+  font-size: clamp(16px, 1.85 * var(--cargo-base), 19px);
+  font-weight: 330;
+  line-height: 1.15;
+  letter-spacing: 0;
 }
 
 .intro-links {
   margin: 0 0 3rem;
-  font-size: 15px;
+  font-size: clamp(15px, 1.7 * var(--cargo-base), 18px);
+  font-weight: 330;
 }
 
 .intro-links a {
-  font-weight: 600;
+  font-weight: 400;
+  text-decoration: none;
 }
 
+/* Cargo .medium-bolt section titles: 3rem / weight 500 */
 .home h2,
 .clients h2,
 .cta h2,
 .cases h2 {
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: clamp(1.15rem, 2.2vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1;
   margin: 0 0 1.25rem;
+  color: var(--black);
 }
 
 .case-grid {
@@ -154,16 +201,21 @@ a:hover {
   margin-bottom: 0.75rem;
 }
 
+/* Case titles ≈ body weight; meta ≈ caption (weight 480) */
 .case-card h3 {
   margin: 0 0 0.25rem;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 480;
+  line-height: 1.1;
+  letter-spacing: 0;
 }
 
 .case-card p {
   margin: 0;
   font-size: 0.92rem;
+  font-weight: 360;
   color: var(--muted);
+  line-height: 1.15;
 }
 
 .logo-strip {
@@ -192,7 +244,8 @@ a:hover {
 
 .cta p {
   margin: 0;
-  line-height: 1.9;
+  line-height: 1.5;
+  font-weight: 360;
 }
 
 .site-footer {
@@ -207,34 +260,47 @@ a:hover {
 }
 
 .legal-links a {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
+/* Case / about prose — match Cargo h1 / bodycopy weights */
 .prose h1 {
-  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
-  line-height: 1.25;
+  font-size: clamp(1.55rem, 3.2vw, 2.5rem);
+  line-height: 1;
+  font-weight: 380;
+  letter-spacing: -0.015em;
+  font-variation-settings: "slnt" 0, "MONO" 0;
+  font-feature-settings: "tnum";
   margin: 0 0 0.75rem;
+  color: var(--black);
 }
 
 .prose h2 {
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0;
   margin: 2rem 0 0.75rem;
+  color: var(--black);
 }
 
 .prose h3 {
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 480;
+  line-height: 1.15;
   margin: 1.5rem 0 0.5rem;
 }
 
 .prose p,
-.prose li {
+.prose li,
+.prose span {
   margin: 0 0 1rem;
+  font-weight: 360;
+  line-height: 1.2;
 }
 
 .prose ul {
@@ -244,6 +310,15 @@ a:hover {
 .prose .subhead {
   color: var(--muted);
   margin-top: -0.25rem;
+  font-weight: 330;
+}
+
+.prose a {
+  text-decoration: none;
+}
+
+.prose a:hover {
+  color: var(--accent);
 }
 
 .media,
@@ -268,18 +343,14 @@ a:hover {
 
 .back,
 .next-case {
-  font-size: 0.92rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 400;
 }
 
 .next-case {
   margin-top: 2.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid #ddd;
-}
-
-.case-body .col {
-  margin-bottom: 0.5rem;
 }
 
 /* Hide Cargo leftover empty anchors / menu noise */
@@ -312,5 +383,10 @@ a:hover {
   .site-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .intro h1,
+  .prose h1 {
+    font-weight: 330;
   }
 }
