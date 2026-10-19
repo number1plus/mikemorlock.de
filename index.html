@@ -12,112 +12,124 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header class="site-header">
-  <a class="logo" href="index.html">Mike Morlock</a>
-  <nav class="nav" aria-label="Primary">
-    <a href="about/" >About</a>
-    <a href="mailto:mike.morlock@me.com">Email</a>
-    <a href="https://www.linkedin.com/in/mike-morlock-198246107/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-  </nav>
-</header>
+  <div class="menu-pin">
+    <a href="#menu" data-menu-open aria-label="Open menu">
+      <img src="assets/menu-icon.svg" width="40" height="28" alt="" />
+    </a>
+  </div>
 
-<main class="page home">
-  <section class="intro">
-    <h1>I’m Mike Morlock, a Brand Activation &amp; Campaign Consultant from Berlin.</h1>
-    <p class="lede">Brand strategy, campaigns, experiential activations, events and trade fairs – from concept to execution. Available for freelance projects.</p>
-    <p class="intro-links">
-      <a href="about/">About</a>
-      <span aria-hidden="true">·</span>
-      <a href="mailto:mike.morlock@me.com">mike.morlock@me.com</a>
-      <span aria-hidden="true">·</span>
-      <a href="https://www.linkedin.com/in/mike-morlock-198246107/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </p>
-  </section>
-
-  <section class="cases" aria-labelledby="cases-heading">
-    <h2 id="cases-heading">Selected Cases</h2>
-    <div class="case-grid">
-      <article class="case-card">
-        <a href="n26-brand-strategy-and-community-case-study/">
-          <img src="assets/cases/case-cover-n26-brand-strategy.jpg" alt="N26 case study – brand strategy and community building for a mobile bank" loading="lazy" />
-          <h3>N26</h3>
-          <p>Brand Strategy · Community Building · Creative Production</p>
-        </a>
-      </article>
-      <article class="case-card">
-        <a href="holvi-fintech-marketing-events-and-trade-fairs/">
-          <img src="assets/cases/case-cover-holvi-fintech-marketing.jpg" alt="Holvi case study – fintech marketing, events and trade fairs in the DACH market" loading="lazy" />
-          <h3>Holvi</h3>
-          <p>Marketing &amp; Brand DACH · Campaigns · Events &amp; Trade Fairs</p>
-        </a>
-      </article>
-      <article class="case-card">
-        <a href="volkswagen-x-hermes-future-logistics-challenge/">
-          <img src="assets/cases/case-cover-volkswagen-hermes-future-logistics-challenge-event.jpg" alt="Volkswagen and Hermes Future Logistics Challenge – campaign and event case study" loading="lazy" />
-          <h3>Volkswagen × Hermes</h3>
-          <p>Open Innovation Campaign · Performance Marketing · Event</p>
-        </a>
-      </article>
-      <article class="case-card">
-        <a href="werder-lab-startup-challenge-for-werder-bremen/">
-          <img src="assets/cases/case-cover-werder-lab-werder-bremen.jpg" alt="WERDER LAB – startup challenge campaign and event for Werder Bremen" loading="lazy" />
-          <h3>WERDER LAB × Werder Bremen</h3>
-          <p>Startup Challenge · Campaign · Event Management</p>
-        </a>
-      </article>
-      <article class="case-card">
-        <a href="42-berlin-and-wolfsburg-student-recruitment-campaign/">
-          <img src="assets/cases/case-cover-42-berlin-wolfsburg.jpg" alt="42 Berlin and 42 Wolfsburg – student recruitment campaign case study" loading="lazy" />
-          <h3>42 Berlin &amp; Wolfsburg</h3>
-          <p>Recruitment Campaign · Testimonials · Paid Social</p>
-        </a>
-      </article>
-      <article class="case-card">
-        <a href="council-plus-art-exhibitions-berlin/">
-          <img src="assets/cases/case-cover-council-plus-kunstausstellung-berlin.jpg" alt="COUNCIL+ – contemporary art exhibitions in Berlin (Kunstausstellungen)" loading="lazy" />
-          <h3>COUNCIL+</h3>
-          <p>Art &amp; Curation · Contemporary Art Exhibitions in Berlin</p>
-        </a>
-      </article>
+  <div id="menu-overlay" class="menu-overlay" hidden aria-hidden="true" role="dialog" aria-label="Menu">
+    <div class="menu-top">
+      <div></div>
+      <div class="menu-close"><a href="#" data-menu-close aria-label="Close menu">✕</a></div>
     </div>
-  </section>
+    <hr />
+    <a class="menu-link" href="index.html" data-menu-close>Work</a>
+    <hr />
+    <a class="menu-link" href="about/">About</a>
+    <hr />
+    <a class="menu-link" href="https://www.instagram.com/mike.morlock/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <hr />
+    <a class="menu-link" href="https://www.linkedin.com/in/mike-morlock-198246107/" target="_blank" rel="noopener noreferrer">Linkedin</a>
+    <hr />
+    <div class="menu-contact mike scale-62">
+      <br />
+      Mike Morlock<br />
+      +4917664260281<br />
+      <a href="mailto:mike.morlock@me.com">mike.morlock@me.com</a>
+    </div>
+    <br />
+    <a class="button-7-8" href="mailto:mike.morlock@me.com">contact</a>
+  </div>
 
-  <section class="clients" aria-labelledby="clients-heading">
-    <h2 id="clients-heading">Further Clients</h2>
-    <ul class="logo-strip">
-      <li><img src="assets/clients/client-logo-toyota.png" alt="Toyota Mobility Foundation logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-bvg.png" alt="BVG logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-deutsche-bahn.png" alt="Deutsche Bahn logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-hermes.png" alt="Hermes logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-k-startup-grand-challenge.png" alt="K-Startup Grand Challenge logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-impact-hub-berlin.png" alt="Impact Hub Berlin logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-betahaus.png" alt="betahaus logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-vomfass.png" alt="vomFASS logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-kura-one.png" alt="KURA ONE logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-formel-skin.png" alt="FORMEL SKIN logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-hellgruen-energie.png" alt="hellgrün Energie logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-wilhelm-hallen.png" alt="Wilhelm Hallen logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-plateau-urbain.png" alt="Plateau Urbain logo" loading="lazy" /></li>
-      <li><img src="assets/clients/client-logo-bechstein-network.png" alt="Bechstein Network logo" loading="lazy" /></li>
-    </ul>
-  </section>
+  <main class="page-content">
+    <div class="bodycopy">
+      <br />
+      <div class="column-set mobile-stack">
+        <div class="column-unit" data-span="8">
+          <h1>I’m Mike Morlock, a Brand Activation &amp; Campaign Consultant from Berlin.</h1>
+        </div>
+        <div class="column-unit" data-span="4">
+          <span class="mike scale-62">Brand strategy, campaigns, experiential activations, events and trade fairs – from concept to execution. Available for freelance projects.<br /><br /><a href="about/">About</a> · <a href="mailto:mike.morlock@me.com">mike.morlock@me.com</a> · <a href="https://www.linkedin.com/in/mike-morlock-198246107/" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>
+        </div>
+      </div>
 
-  <section class="cta">
-    <h2>Let’s work together</h2>
-    <p>
-      <a href="mailto:mike.morlock@me.com">mike.morlock@me.com</a><br />
-      <a href="https://www.linkedin.com/in/mike-morlock-198246107/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <span aria-hidden="true">·</span>
-      <a href="https://www.instagram.com/mike.morlock/" target="_blank" rel="noopener noreferrer">Instagram</a>
-    </p>
-  </section>
-</main>
+      <span class="spacer-2" aria-hidden="true"></span>
+      <h2 class="medium-bolt">Selected Cases</h2>
+      <span class="spacer-1" aria-hidden="true"></span>
 
-<footer class="site-footer">
-  <nav class="legal-links" aria-label="Legal">
-    <a href="imprint/">Imprint</a>
-    <a href="privacy-policy/">Privacy Policy</a>
-  </nav>
-</footer>
+      <div class="column-set mobile-stack">
+        <div class="column-unit case-block" data-span="6">
+          <a class="image-link" href="n26-brand-strategy-and-community-case-study/"><img src="assets/cases/case-cover-n26-brand-strategy.jpg" alt="N26 case study – brand strategy and community building for a mobile bank" loading="lazy" /></a>
+          <span class="medium-bolt"><a href="n26-brand-strategy-and-community-case-study/">N26</a></span>
+          <span class="mike scale-62">Brand Strategy · Community Building · Creative Production<br /><br /><br /></span>
+        </div>
+        <div class="column-unit case-block" data-span="6">
+          <a class="image-link" href="holvi-fintech-marketing-events-and-trade-fairs/"><img src="assets/cases/case-cover-holvi-fintech-marketing.jpg" alt="Holvi case study – fintech marketing, events and trade fairs in the DACH market" loading="lazy" /></a>
+          <span class="medium-bolt"><a href="holvi-fintech-marketing-events-and-trade-fairs/">Holvi</a></span>
+          <span class="mike scale-62">Marketing &amp; Brand DACH · Campaigns · Events &amp; Trade Fairs<br /><br /><br /></span>
+        </div>
+      </div>
+
+      <div class="column-set mobile-stack">
+        <div class="column-unit case-block" data-span="6">
+          <a class="image-link" href="volkswagen-x-hermes-future-logistics-challenge/"><img src="assets/cases/case-cover-volkswagen-hermes-future-logistics-challenge-event.jpg" alt="Volkswagen and Hermes Future Logistics Challenge – campaign and event case study" loading="lazy" /></a>
+          <span class="medium-bolt"><a href="volkswagen-x-hermes-future-logistics-challenge/">Volkswagen × Hermes</a></span>
+          <span class="mike scale-62">Open Innovation Campaign · Performance Marketing · Event<br /><br /><br /></span>
+        </div>
+        <div class="column-unit case-block" data-span="6">
+          <a class="image-link" href="werder-lab-startup-challenge-for-werder-bremen/"><img src="assets/cases/case-cover-werder-lab-werder-bremen.jpg" alt="WERDER LAB – startup challenge campaign and event for Werder Bremen" loading="lazy" /></a>
+          <span class="medium-bolt"><a href="werder-lab-startup-challenge-for-werder-bremen/">WERDER LAB × Werder Bremen</a></span>
+          <span class="mike scale-62">Startup Challenge · Campaign · Event Management<br /><br /><br /></span>
+        </div>
+      </div>
+
+      <div class="column-set mobile-stack">
+        <div class="column-unit case-block" data-span="6">
+          <a class="image-link" href="42-berlin-and-wolfsburg-student-recruitment-campaign/"><img src="assets/cases/case-cover-42-berlin-wolfsburg.jpg" alt="42 Berlin and 42 Wolfsburg – student recruitment campaign case study" loading="lazy" /></a>
+          <span class="medium-bolt"><a href="42-berlin-and-wolfsburg-student-recruitment-campaign/">42 Berlin &amp; Wolfsburg</a></span>
+          <span class="mike scale-62">Recruitment Campaign · Testimonials · Paid Social<br /><br /><br /></span>
+        </div>
+        <div class="column-unit case-block" data-span="6">
+          <a class="image-link" href="council-plus-art-exhibitions-berlin/"><img src="assets/cases/case-cover-council-plus-kunstausstellung-berlin.jpg" alt="COUNCIL+ – contemporary art exhibitions in Berlin (Kunstausstellungen)" loading="lazy" /></a>
+          <span class="medium-bolt"><a href="council-plus-art-exhibitions-berlin/">COUNCIL+</a></span>
+          <span class="mike scale-62">Art &amp; Curation · Contemporary Art Exhibitions in Berlin<br /><br /><br /></span>
+        </div>
+      </div>
+
+      <span class="spacer-1" aria-hidden="true"></span>
+      <h2 class="medium-bolt">Further Clients</h2>
+      <span class="spacer-1" aria-hidden="true"></span>
+
+      <div class="logo-rows">
+        <img src="assets/clients/client-logo-toyota.png" alt="Toyota Mobility Foundation logo" loading="lazy" />
+        <img src="assets/clients/client-logo-bvg.png" alt="BVG logo" loading="lazy" />
+        <img src="assets/clients/client-logo-deutsche-bahn.png" alt="Deutsche Bahn logo" loading="lazy" />
+        <img src="assets/clients/client-logo-hermes.png" alt="Hermes logo" loading="lazy" />
+        <img src="assets/clients/client-logo-k-startup-grand-challenge.png" alt="K-Startup Grand Challenge logo" loading="lazy" />
+        <img src="assets/clients/client-logo-impact-hub-berlin.png" alt="Impact Hub Berlin logo" loading="lazy" />
+        <img src="assets/clients/client-logo-betahaus.png" alt="betahaus logo" loading="lazy" />
+      </div>
+      <div class="logo-rows">
+        <img src="assets/clients/client-logo-vomfass.png" alt="vomFASS logo" loading="lazy" />
+        <img src="assets/clients/client-logo-kura-one.png" alt="KURA ONE logo" loading="lazy" />
+        <img src="assets/clients/client-logo-formel-skin.png" alt="FORMEL SKIN logo" loading="lazy" />
+        <img src="assets/clients/client-logo-hellgruen-energie.png" alt="hellgrün Energie logo" loading="lazy" />
+        <img src="assets/clients/client-logo-wilhelm-hallen.png" alt="Wilhelm Hallen logo" loading="lazy" />
+        <img src="assets/clients/client-logo-plateau-urbain.png" alt="Plateau Urbain logo" loading="lazy" />
+        <img src="assets/clients/client-logo-bechstein-network.png" alt="Bechstein Network logo" loading="lazy" />
+      </div>
+
+      <span class="spacer-3" aria-hidden="true"></span>
+      <h2 class="medium-bolt">Let’s work together</h2>
+      <span class="mike scale-62"><br /><a href="mailto:mike.morlock@me.com">mike.morlock@me.com</a><br /><a href="https://www.linkedin.com/in/mike-morlock-198246107/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.instagram.com/mike.morlock/" target="_blank" rel="noopener noreferrer">Instagram</a><br /><br /><br /></span>
+    </div>
+  </main>
+
+  <footer class="legal-footer">
+    <span class="mike scale-62"><a href="imprint/">Imprint</a> · <a href="privacy-policy/">Privacy Policy</a></span>
+  </footer>
+
+  <script src="site.js" defer></script>
 </body>
 </html>

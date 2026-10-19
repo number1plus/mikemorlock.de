@@ -1,5 +1,7 @@
-/* Monument Grotesk Variable — same face as mikemorlock.cargo.site
-   (type.cargo.site). Not vendored; Dinamo Web license needed to self-host. */
+/* Cargo parity stylesheet for mikemorlock.de
+   Type: Monument Grotesk Variable via type.cargo.site
+   Structure: 12-col column-set, pinned menu + legal footer, overlay Menü */
+
 @font-face {
   font-display: swap;
   font-family: "Monument Grotesk Variable";
@@ -24,18 +26,15 @@
 
 :root {
   --black: rgba(0, 0, 0, 0.85);
-  --muted: rgba(0, 0, 0, 0.55);
+  --black-soft: rgba(0, 0, 0, 0.75);
   --accent: #ff0000;
   --bg: #fff;
   --font: "Monument Grotesk Variable", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /*
-    Cargo --base-size ≈ min(vw, vh) * weight/100 * 0.16 with weight≈9
-    → min(vw,vh) * 0.0144. Clamp so tiny phones stay readable.
-  */
+  /* Cargo --base-size ≈ min(vw,vh) * 0.0144 */
   --cargo-base: clamp(8.5px, 1.44vmin, 15.5px);
-  /* Rhythm: Cargo uses <br> in .mike (3rem×0.62) and bodycopy (2rem) */
-  --space-mike: 1.86rem; /* 3rem × 0.62 */
-  --space-body: 2rem;
+  --mike: 1.86rem; /* 3rem × 0.62 */
+  --bodycopy: 2rem;
+  --cols: 12;
 }
 
 *,
@@ -57,15 +56,17 @@ body {
   color: var(--black);
   background: var(--bg);
   font-family: var(--font);
-  /* Cargo .mike @ --font-scale 0.62 */
-  font-size: var(--space-mike);
-  line-height: 1;
+  font-size: var(--mike);
   font-weight: 330;
-  font-variation-settings: "slnt" 0, "MONO" 0;
+  line-height: 1;
   letter-spacing: 0;
-  text-transform: none;
+  font-variation-settings: "slnt" 0, "MONO" 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body.menu-open {
+  overflow: hidden;
 }
 
 img {
@@ -77,363 +78,418 @@ img {
 a {
   color: inherit;
   text-decoration: none;
-  text-underline-offset: 0.12em;
 }
 
 a:hover {
   color: var(--accent);
 }
 
-.site-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  /* Cargo pinned header pad ≈ 1.5rem / 1.3rem top */
-  padding: 1.3rem 1.5rem 0.75rem;
-  position: sticky;
+hr {
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.18);
+  margin: 0;
+}
+
+/* ——— Pinned menu icon (Cargo top-right overlay) ——— */
+.menu-pin {
+  position: fixed;
   top: 0;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(8px);
-  z-index: 10;
+  right: 0;
+  z-index: 40;
+  padding: 1.3rem 1.5rem 1rem 1rem;
+  text-align: right;
+  pointer-events: none;
 }
 
-.logo {
-  font-size: var(--space-mike);
-  font-weight: 500;
-  letter-spacing: 0;
+.menu-pin a {
+  pointer-events: auto;
+  display: inline-block;
+  color: var(--black-soft);
   line-height: 1;
-  text-decoration: none;
-  text-transform: none;
 }
 
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 1.5rem;
-  font-size: var(--space-mike);
-  font-weight: 330;
-  letter-spacing: 0;
-  line-height: 1;
-  text-transform: none;
+.menu-pin img,
+.menu-pin svg {
+  width: 5.7vw;
+  min-width: 28px;
+  max-width: 56px;
+  height: auto;
+  display: block;
 }
 
-.nav a {
-  text-decoration: none;
-}
-
-.nav a.is-active {
-  color: var(--accent);
-}
-
-.page {
+/* ——— Page content ——— */
+.page-content {
   flex: 1;
   width: 100%;
   max-width: 100%;
-  margin: 0 auto;
-  /* Cargo main page-content: padding-top 3rem, bottom 2rem, sides ~1.5rem */
-  padding: 3rem 1.5rem 2rem;
+  /* Cargo content pad — room for pinned menu icon on the right */
+  padding: 0.5rem 5rem 0.5rem 0.5rem;
 }
 
-.page.narrow {
-  max-width: 72rem;
+.page-content.case-page,
+.page-content.legal-page {
+  padding: 0.5rem 5rem 2rem 0.5rem;
+  max-width: 100%;
 }
 
-/* Cargo h1: 4.50rem / 380 / lh 1 / ls -0.015em / margin 0 / padding 0 */
-.intro h1,
-.prose h1 {
+bodycopy,
+.bodycopy {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ——— 12-column Cargo column-set ——— */
+.column-set {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  /* Cargo gutter="2" ≈ 2 × base */
+  gap: calc(var(--cargo-base) * 2);
+  width: 100%;
+  align-items: start;
+}
+
+.column-unit {
+  min-width: 0;
+}
+
+.column-unit[data-span="2"] { grid-column: span 2; }
+.column-unit[data-span="4"] { grid-column: span 4; }
+.column-unit[data-span="6"] { grid-column: span 6; }
+.column-unit[data-span="8"] { grid-column: span 8; }
+.column-unit[data-span="10"] { grid-column: span 10; }
+.column-unit[data-span="12"] { grid-column: span 12; }
+
+/* ——— Type styles (Cargo text styles) ——— */
+h1,
+.heading-1 {
   font-family: var(--font);
   font-size: 4.5rem;
   font-weight: 380;
   line-height: 1;
   letter-spacing: -0.015em;
-  font-variation-settings: "slnt" 0, "MONO" 0;
-  font-feature-settings: "tnum";
   margin: 0;
   padding: 0;
-  max-width: none;
   color: var(--black);
+  font-variation-settings: "slnt" 0, "MONO" 0;
+  font-feature-settings: "tnum";
   text-transform: none;
 }
 
-/* Cargo .mike --font-scale 0.62 beside/under intro */
-.lede {
-  max-width: none;
-  margin: var(--space-mike) 0 0;
-  color: var(--black);
-  font-size: var(--space-mike);
-  font-weight: 330;
-  line-height: 1;
-  letter-spacing: 0;
-  text-transform: none;
-}
-
-.intro-links {
-  /* two .mike <br>s before “Selected Cases” ≈ 2 × 1.86rem */
-  margin: var(--space-mike) 0 calc(var(--space-mike) * 2);
-  font-size: var(--space-mike);
-  font-weight: 330;
-  line-height: 1;
-}
-
-.intro-links a {
-  font-weight: 330;
-  text-decoration: none;
-}
-
-/* Cargo h2.medium-bolt: 3.00rem / 500 / lh 1 / ls 0 / margin 0 */
-.home h2,
-.clients h2,
-.cta h2,
-.cases h2,
-.prose h2 {
+h2,
+.medium-bolt {
   font-family: var(--font);
   font-size: 3rem;
   font-weight: 500;
-  letter-spacing: 0;
-  text-transform: none;
   line-height: 1;
+  letter-spacing: 0;
   margin: 0;
   padding: 0;
   color: var(--black);
   font-variation-settings: "slnt" 0, "MONO" 0;
-}
-
-/* Section title → content: one .mike <br> */
-.cases h2,
-.clients h2,
-.cta h2 {
-  margin: 0 0 var(--space-mike);
-}
-
-/* Prose section heads: Cargo stacks medium-bolt with mike <br><br> between blocks */
-.prose h2 {
-  margin: calc(var(--space-mike) * 2) 0 var(--space-mike);
-}
-
-.prose h2:first-of-type {
-  margin-top: calc(var(--space-mike) * 2);
-}
-
-.case-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem; /* Cargo column-set gutter="2" */
-  margin-bottom: calc(var(--space-mike) * 2);
-}
-
-.case-card a {
-  text-decoration: none;
+  text-transform: none;
   display: block;
 }
 
-.case-card img {
+.mike {
+  display: block;
+  font-size: 3rem;
+  font-weight: 330;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--black);
+  font-variation-settings: "slnt" 0, "MONO" 0;
+}
+
+.mike[style*="--font-scale: 0.62"],
+.mike.scale-62,
+.scale-62 {
+  font-size: var(--mike);
+  font-weight: 330;
+}
+
+.heading-1-mob- {
+  display: block;
+  font-size: 4.5rem;
+  font-weight: 330;
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+
+/* Red Cargo buttons */
+.button-7-1,
+.button-7-8,
+.back-link {
+  font-family: var(--font);
+  font-size: calc(var(--bodycopy) * 1.1);
+  font-weight: 547;
+  color: var(--accent);
+  display: inline-block;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.button-7-8 {
+  font-size: calc(4.5rem * 0.8);
+  font-weight: 380;
+  letter-spacing: -0.015em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0.15em 0.35em;
+}
+
+/* ——— Home cases ——— */
+.case-block img {
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
   background: #f3f3f3;
-  /* bare <br> under image inside bodycopy ≈ 2rem */
-  margin-bottom: var(--space-body);
+  margin-bottom: var(--bodycopy);
 }
 
-/* Case titles on Cargo are .medium-bolt (same as section h2), not small captions */
-.case-card h3 {
+.case-block .medium-bolt {
   margin: 0;
-  padding: 0;
-  font-size: 3rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0;
-  text-transform: none;
-  font-variation-settings: "slnt" 0, "MONO" 0;
-  color: var(--black);
 }
 
-.case-card p {
+.case-block .mike {
   margin: 0;
-  font-size: var(--space-mike);
-  font-weight: 330;
-  color: var(--black);
-  line-height: 1;
-  letter-spacing: 0;
 }
 
-.logo-strip {
-  list-style: none;
-  margin: 0 0 calc(var(--space-mike) * 2);
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 1.25rem 1rem;
-  align-items: center;
+.logo-rows {
+  text-align: center;
 }
 
-.logo-strip img {
+.logo-rows img {
+  display: inline-block;
+  vertical-align: middle;
   max-height: 4.2rem;
   width: auto;
-  max-width: 100%;
-  margin: 0 auto;
+  max-width: 13.6%;
+  margin: 0.6rem 1.1%;
   filter: grayscale(1);
   opacity: 0.85;
+  object-fit: contain;
 }
 
-.cta {
+.spacer-2 {
+  display: block;
+  height: calc(var(--mike) * 2);
+}
+
+.spacer-1 {
+  display: block;
+  height: var(--mike);
+}
+
+.spacer-3 {
+  display: block;
+  height: calc(var(--mike) * 3);
+}
+
+/* ——— Legal footer (Cargo pinned-bottom) ——— */
+.legal-footer {
+  width: 100%;
   text-align: center;
-  padding: var(--space-mike) 0 calc(var(--space-mike) * 2);
+  padding: 3rem 1.5rem 2rem;
 }
 
-.cta p {
-  margin: 0;
-  line-height: 1;
-  font-weight: 330;
-  font-size: var(--space-mike);
+.legal-footer .mike {
+  font-size: var(--mike);
 }
 
-.site-footer {
-  padding: 1.5rem 1.5rem 2.5rem;
-  display: flex;
-  justify-content: center;
+/* ——— Menu overlay (Cargo Menü) ——— */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: #fff;
+  overflow: auto;
+  padding: 1.5rem 1.5rem 3rem;
 }
 
-.legal-links {
-  display: flex;
-  gap: 2.5rem;
+.menu-overlay[hidden] {
+  display: none !important;
 }
 
-.legal-links a {
-  font-size: var(--space-mike);
-  font-weight: 330;
-  letter-spacing: 0;
-  text-decoration: none;
-  text-transform: none;
-  line-height: 1;
-}
-
-.prose h3 {
-  font-size: 3rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0;
-  margin: calc(var(--space-mike) * 2) 0 var(--space-mike);
-  text-transform: none;
-}
-
-.prose p,
-.prose li,
-.prose > span {
-  margin: 0 0 var(--space-mike);
-  font-weight: 330;
-  line-height: 1;
-  font-size: var(--space-mike);
-  letter-spacing: 0;
-}
-
-.prose ul {
-  padding-left: 1.15em;
-}
-
-.prose .subhead {
-  color: var(--muted);
-  margin-top: 0;
-  font-weight: 330;
-}
-
-.prose a {
-  text-decoration: none;
-}
-
-.prose a:hover {
-  color: var(--accent);
-}
-
-.media,
-.prose figure {
-  margin: var(--space-body) 0;
-}
-
-.media img,
-.prose figure img {
-  width: 100%;
-}
-
-.about-layout {
+.menu-overlay .menu-top {
   display: grid;
+  grid-template-columns: 10fr 2fr;
   gap: 2rem;
+  align-items: start;
+  margin-bottom: 0;
 }
 
-.portrait img {
-  width: 100%;
-  max-width: 36rem;
+.menu-overlay .menu-close {
+  text-align: right;
 }
 
-.back,
-.next-case {
-  font-size: var(--space-mike);
-  font-weight: 330;
+.menu-overlay .menu-close a {
+  font-size: calc(4.5rem * 0.85);
+  font-weight: 380;
   line-height: 1;
+  letter-spacing: -0.015em;
 }
 
-.next-case {
-  margin-top: calc(var(--space-mike) * 2);
-  padding-top: var(--space-mike);
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
+.menu-overlay hr {
+  margin: 0;
 }
 
-/* Hide Cargo leftover empty anchors / menu noise */
+.menu-overlay .menu-link {
+  display: block;
+  font-size: 4.5rem;
+  font-weight: 380;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  padding: 0.15em 0;
+}
+
+.menu-overlay .menu-contact {
+  font-size: var(--mike);
+  font-weight: 330;
+  margin-top: var(--mike);
+}
+
+/* ——— About / prose / cases ——— */
+.prose h1 {
+  margin: 0;
+}
+
+.prose .medium-bolt {
+  margin: 0;
+}
+
+.prose .mike + .medium-bolt,
+.spacer-2 + .medium-bolt {
+  /* rhythm handled by spacer elements */
+}
+
+.prose figure,
+.case-body figure {
+  margin: var(--bodycopy) 0;
+}
+
+.prose figure img,
+.case-body figure img,
+.case-body > img {
+  width: 100%;
+}
+
+.case-body > a.back-link,
+.case-body > .back-link {
+  display: inline-block;
+  margin-bottom: calc(var(--mike) * 2);
+}
+
+/* Hide Cargo export noise */
 .case-body > a:first-child:not([href*="mailto"]):empty,
-.prose > a[href$="index.html"]:first-child:empty {
-  display: none;
-}
-
-/* Empty leading h1 from Cargo export (about: <h1><br/></h1><h1>…)</h1>) */
+.prose > a[href$="index.html"]:first-child:empty,
 .about-copy > h1:first-of-type:has(+ h1) {
   display: none;
 }
 
-@media (min-width: 800px) {
-  .about-layout {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
-    align-items: start;
-  }
-
-  /* Home intro: Cargo is 8/4 columns — keep stacked but let h1 breathe full width */
-  .intro h1 {
-    max-width: 66%;
-  }
-
-  .lede {
-    max-width: 34%;
-  }
+.center {
+  text-align: center;
 }
 
+/* ——— Mobile (Cargo mobile-stack + h1 4rem + menu icon) ——— */
 @media (max-width: 700px) {
-  /* Cargo .mobile h1 { font-size: 4.00rem } */
-  .intro h1,
-  .prose h1 {
+  .page-content {
+    padding: 3.5rem 1rem 1.5rem;
+  }
+
+  .page-content.case-page,
+  .page-content.legal-page {
+    padding: 3.5rem 1rem 2rem;
+  }
+
+  .column-set.mobile-stack {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .column-set.mobile-stack .column-unit[data-span] {
+    grid-column: span 1;
+  }
+
+  h1,
+  .heading-1,
+  .menu-overlay .menu-link {
     font-size: 4rem;
     font-weight: 330;
   }
 
-  .case-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .menu-pin {
+    padding: 1rem;
   }
 
-  .logo-strip {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .menu-pin img,
+  .menu-pin svg {
+    width: 36px;
   }
 
-  .legal-links {
-    gap: 1.5rem;
+  .logo-rows img {
+    max-width: 28%;
+    max-height: 3.2rem;
   }
 
-  .site-header {
+  .menu-overlay .menu-link {
+    font-size: 4rem;
+  }
+}
+
+
+/* ——— Case media rows (Cargo scale="32.5%") ——— */
+.media-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25%;
+  width: 100%;
+  margin: 0;
+}
+
+.media-row figure {
+  margin: 0;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.media-row-3 figure {
+  flex: 0 0 32.5%;
+  max-width: 32.5%;
+}
+
+.case-page .bodycopy figure {
+  margin: 0;
+}
+
+.case-page .bodycopy figure img,
+.case-page .bodycopy .image-link img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.case-page .bodycopy > .mike,
+.case-page .bodycopy > span.mike {
+  display: block;
+}
+
+.case-page h1 {
+  margin: 0;
+}
+
+/* About uses full-width like Work (not narrow case column) */
+.page-content:not(.case-page):not(.legal-page) {
+  max-width: 100%;
+}
+
+@media (max-width: 700px) {
+  .media-row-3 {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 1rem;
   }
-
-  .intro h1,
-  .lede {
-    max-width: none;
+  .media-row-3 figure {
+    flex: 1 1 auto;
+    max-width: 100%;
   }
 }
